@@ -47,6 +47,7 @@ public class Enemy : MonoBehaviour
         {
             Destroy(collision.gameObject); 
             Debug.Log($"Enemy killed was worth {score} points");
+            
             OnEnemyDeath?.Invoke(score);
             gameObject.SetActive(false); 
         }

@@ -44,7 +44,7 @@ public class Invaders : MonoBehaviour
 
     private void CreateInvaderGrid()
     {
-        totalInvaders = 0; 
+        totalInvaders = rows * columns; 
 
         float width = 2f * (columns - 1);
         float height = 2f * (rows - 1);
@@ -58,9 +58,8 @@ public class Invaders : MonoBehaviour
             {
                 Enemy enemy = Instantiate(prefabs[i % prefabs.Length], transform);
                 Vector3 position = rowPosition;
-                position.x += 2f * j;
+                position.x += 1.5f * j;
                 enemy.transform.position = transform.position + position;
-                totalInvaders++;
             }
         }
 
@@ -77,8 +76,8 @@ public class Invaders : MonoBehaviour
             }
             
             transform.position += direction * currentMoveSpeed;
-            currentMoveSpeed = Mathf.Max(minMoveSpeed, moveSpeed - 0.015f * (totalInvaders - invadersLeft) * 2);
-
+            
+            currentMoveSpeed = Mathf.Max(minMoveSpeed, moveSpeed - 0.015f * ((totalInvaders - invadersLeft) * 2));
             yield return new WaitForSeconds(currentMoveSpeed);
         }
     }
